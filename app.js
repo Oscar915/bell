@@ -121,7 +121,6 @@ app.post('/api/addcalendar', (req, res) => {
         domingo: req.body.domingo,
         estado: req.body.estado
     };
-
     connection.query(sql, calendarObj, error => {
         if (error) throw error;
         res.send('Horario creado!');
