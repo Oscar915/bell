@@ -133,27 +133,15 @@ app.post('/api/addcalendar', (req, res) => {
 });
 
 
-app.put('/update/:id', (req, res) => {
-    const { id } = req.params;
-    const { nombre, dia, hora, lunes, martes,
+app.put('/api/update', (req, res) => {
+    const { id, nombre, dia, hora, lunes, martes,
         miercoles,
         jueves,
         viernes,
         sabado,
         domingo,
         estado } = req.body;
-    const sql = `UPDATE calendar SET nombre = '${nombre}', 
-    dia='${dia}' ,
-    hora='${hora}' ,
-    lunes='${lunes}' ,
-    martes='${martes}' ,
-    miercoles='${miercoles}' ,
-    jueves='${jueves}' ,
-    viernes='${viernes}' ,
-    sabado='${sabado}' ,
-    domingo='${domingo}' ,
-    estado='${estado}' ,
-    WHERE id =${id}`;
+    const sql = `UPDATE calendar SET nombre = '${nombre}',     dia='${dia}' ,    hora='${hora}' ,    lunes='${lunes}' ,    martes='${martes}' ,    miercoles='${miercoles}' ,    jueves='${jueves}' ,    viernes='${viernes}' ,    sabado='${sabado}' ,   domingo='${domingo}' ,estado='${estado}' WHERE id =${id}`;
 
     connection.query(sql, error => {
         if (error) throw error;
@@ -161,7 +149,7 @@ app.put('/update/:id', (req, res) => {
     });
 });
 
-app.delete('/deletecalendar/:id', (req, res) => {
+app.delete('/api/deletecalendar/:id', (req, res) => {
     const { id } = req.params;
     const sql = `DELETE FROM calendar WHERE id= ${id}`;
 
