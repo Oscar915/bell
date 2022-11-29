@@ -76,7 +76,7 @@ app.get('/api/users', (req, res) => {
 });
 
 
-app.get('/api/users:id', (req, res) => {
+app.get('/api/users/:id', (req, res) => {
     const { id } = req.params;
     const sql = `SELECT * FROM users WHERE id=${id}`;
     connection.query(sql, (error, result) => {
