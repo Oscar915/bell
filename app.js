@@ -1,9 +1,11 @@
 const express = require("express");
 const mysql = require('mysql');
 const jwt = require("jsonwebtoken");
-import cors from 'cors';
+const cors = require( "cors");
+const bodyParser = require("body-parser")
 
 const app = express();
+app.use(bodyParser.json());
 
 app.get("/api", (req, res) => {
     res.json({
@@ -17,10 +19,6 @@ const connection = mysql.createConnection({
     password: 'nancybell',
     database: 'belldata'
 });
-
-
-
-
 
 app.post("/api/login", (req, res) => {
     const user = {
@@ -108,19 +106,25 @@ app.get('/api/calendar',cors(), (req, res) => {
 
 app.post('/api/addcalendar', (req, res) => {
     const sql = 'INSERT INTO calendar SET ?';
-
+    const { nombre, dia, hora, lunes, martes,
+        miercoles,
+        jueves,
+        viernes,
+        sabado,
+        domingo,
+        estado } = req.body;
     const calendarObj = {
-        nombre: req.body.nombre,
-        dia: req.body.dia,
-        hora: req.body.hora,
-        lunes: req.body.lunes,
-        martes: req.body.martes,
-        miercoles: req.body.miercoles,
-        jueves: req.body.jueves,
-        viernes: req.body.viernes,
-        sabado: req.body.sabado,
-        domingo: req.body.domingo,
-        estado: req.body.estado
+        nombre: nombre,
+        dia: dia,
+        hora: hora,
+        lunes: lunes,
+        martes: martes,
+        miercoles: miercoles,
+        jueves: jueves,
+        viernes: viernes,
+        sabado: sabado,
+        domingo: domingo,
+        estado: estado
     };
     connection.query(sql, calendarObj, error => {
         if (error) throw error;
