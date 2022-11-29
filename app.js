@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require('mysql');
 const jwt = require("jsonwebtoken");
+import cors from 'cors';
 
 const app = express();
 
@@ -62,7 +63,7 @@ function verifyToken(req, res, next) {
     }
 }
 
-app.get('/api/users', (req, res) => {
+app.get('/api/users',cors(), (req, res) => {
     const sql = `SELECT * FROM users`;
     connection.query(sql, (error, result) => {
         if (error) throw error;
@@ -76,7 +77,7 @@ app.get('/api/users', (req, res) => {
 });
 
 
-app.get('/api/users/:id', (req, res) => {
+app.get('/api/users/:id',cors(), (req, res) => {
     const { id } = req.params;
     const sql = `SELECT * FROM users WHERE id=${id}`;
     connection.query(sql, (error, result) => {
@@ -91,7 +92,7 @@ app.get('/api/users/:id', (req, res) => {
 });
 
 
-app.get('/api/calendar', (req, res) => {
+app.get('/api/calendar',cors(), (req, res) => {
     //const { id } = req.params;
     const sql = `SELECT * FROM calendar`;
     connection.query(sql, (error, result) => {
