@@ -5,6 +5,10 @@ const cors = require( "cors");
 const bodyParser = require("body-parser")
 
 const app = express();
+
+app.use(cors({
+    origin: 'http://localhost:4200'
+}))
 app.use(bodyParser.json());
 
 app.get("/api", (req, res) => {
@@ -104,7 +108,7 @@ app.get('/api/calendar',cors(), (req, res) => {
     });
 });
 
-app.post('/api/addcalendar',cors(), (req, res) => {
+app.post('/api/addcalendar', (req, res) => {
     const sql = 'INSERT INTO calendar SET ?';
     const { nombre, dia, hora, lunes, martes,
         miercoles,
