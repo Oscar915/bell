@@ -108,6 +108,19 @@ app.get('/api/calendar',cors(), (req, res) => {
     });
 });
 
+app.get('/api/calendar/:id',cors(), (req, res) => {
+    const { id } = req.params;
+    const sql = `SELECT * FROM calendar WHERE id= ${id}`;
+    connection.query(sql, (error, result) => {
+        if (error) throw error;
+        if (result.length > 0) {
+            res.json(result);
+        } else {
+            res.send('Not result');
+        }
+    });
+});
+
 app.post('/api/addcalendar', (req, res) => {
     const sql = 'INSERT INTO calendar SET ?';
     const { nombre, dia, hora, lunes, martes,
