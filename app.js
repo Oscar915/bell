@@ -166,6 +166,11 @@ app.post('/api/sound', (req, res) => {
    res.send('Ah sonado el timbre');
 });
 
+// Sonar timbre
+app.get('/api/sound', (req, res) => {
+    console.log("Sonó el timbre");
+    res.send('Ah sonado el timbre');
+ });
 app.listen(3000, () => {
     console.log("nodejs app running...");
 });
