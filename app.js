@@ -104,7 +104,7 @@ app.get('/api/calendar',cors(), (req, res) => {
     });
 });
 
-app.post('/api/addcalendar', (req, res) => {
+app.post('/api/addcalendar',cors(), (req, res) => {
     const sql = 'INSERT INTO calendar SET ?';
     const { nombre, dia, hora, lunes, martes,
         miercoles,
@@ -133,7 +133,7 @@ app.post('/api/addcalendar', (req, res) => {
 });
 
 
-app.put('/api/update', (req, res) => {
+app.put('/api/update',cors(), (req, res) => {
     const { id, nombre, dia, hora, lunes, martes,
         miercoles,
         jueves,
@@ -149,7 +149,7 @@ app.put('/api/update', (req, res) => {
     });
 });
 
-app.delete('/api/deletecalendar/:id', (req, res) => {
+app.delete('/api/deletecalendar/:id',cors(), (req, res) => {
     const { id } = req.params;
     const sql = `DELETE FROM calendar WHERE id= ${id}`;
 
@@ -161,13 +161,13 @@ app.delete('/api/deletecalendar/:id', (req, res) => {
 
 
 // Sonar timbre
-app.post('/api/sound', (req, res) => {
+app.post('/api/sound',cors(), (req, res) => {
    console.log("Sonó el timbre");
    res.send('Ah sonado el timbre');
 });
 
 // Sonar timbre
-app.get('/api/sound', (req, res) => {
+app.get('/api/sound', cors(),(req, res) => {
     console.log("Sonó el timbre");
     res.send('Ah sonado el timbre');
  });
