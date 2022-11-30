@@ -162,7 +162,8 @@ app.delete('/api/deletecalendar/:id', (req, res) => {
 
 // Sonar timbre
 app.post('/api/sound', (req, res) => {
-    // función para enviar información al arduino 
+   console.log("Sonó el timbre");
+   res.send('Ah sonado el timbre');
 });
 
 app.listen(3000, () => {
